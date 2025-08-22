@@ -32,11 +32,11 @@ public class InventoryUnitController {
     }
 
     // Registrar nueva unidad de inventario
+
     @PostMapping
     public ResponseEntity<InventoryUnit> registrar(@Valid @RequestBody InventoryUnit i) throws Exception {
         InventoryUnit obj = service.registrar(i);
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
-        return ResponseEntity.created(location).build();
+        return new ResponseEntity<>(obj, HttpStatus.CREATED);
     }
 
     // Modificar unidad de inventario

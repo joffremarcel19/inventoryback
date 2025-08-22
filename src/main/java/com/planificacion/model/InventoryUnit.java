@@ -43,6 +43,18 @@ public class InventoryUnit {
 
     @Column(name = "max_stock")
     private Integer maxStock;
+    
+    // ✅ Nuevo campo: El custodio del inventario (no es obligatorio)
+    @ManyToOne
+    @JoinColumn(name = "custodian_id", nullable = true, foreignKey = @ForeignKey(name = "FK_inventory_unit_custodian"))
+    private Persona custodian;
+
+    // ✅ Nuevo campo: El estado del inventario (no es obligatorio)
+    @Column(name = "status", nullable = true)
+    private String status;
+    
+    @Column(name = "url_img", nullable = true)
+    private String urlImg;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(

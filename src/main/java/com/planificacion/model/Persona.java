@@ -18,7 +18,7 @@ import lombok.Data;
 public class Persona {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idPersona;
+    private Integer idPersona;
 
     @Column(name = "cedula")
     private String cedula;
