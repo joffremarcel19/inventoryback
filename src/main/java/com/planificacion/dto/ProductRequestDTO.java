@@ -15,4 +15,12 @@ public class ProductRequestDTO {
     private String description;
     @JsonProperty("id")
     private Integer idUnit;
+    
+    // ✅ NUEVOS CAMPOS AGREGADOS
+    private Boolean iva;
+    private Boolean irbp;
+    private Boolean ice;
+    private String partNumber;
+    private Integer performance;
+    private String idOlympo;
 }

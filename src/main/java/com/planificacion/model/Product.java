@@ -53,6 +53,9 @@ public class Product {
 
     @Column(name = "description", nullable = true)
     private String description;
+    
+    @Column(name = "id_olympo", nullable = false, unique = true)
+    private String idOlympo;
 
 
     public enum ProductType {

@@ -36,6 +36,11 @@ public class PurchaseRequestDTO {
     private Double discount;
     private Double iva;
     private String authorizationCode;
+    private String purchaseType;
+    private String proformaNumber;
+    private LocalDate proformaDate;
+    private String proformaContact;
+    private Integer proformaValidity;
 
     @NotNull(message = "Payment method ID cannot be null")
     private Integer paymentMethodId;

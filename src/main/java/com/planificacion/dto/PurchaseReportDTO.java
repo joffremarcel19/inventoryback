@@ -32,6 +32,11 @@ public class PurchaseReportDTO {
     private Double discount;
     private Double iva;
     private Double totalAmount;
+    private String purchaseType;
+    private String proformaNumber;
+    private LocalDate proformaDate;
+    private String proformaContact;
+    private Integer proformaValidity;
     
     private List<PurchaseDetailReportDTO> details;
 
@@ -54,6 +59,11 @@ public class PurchaseReportDTO {
         this.discount = purchase.getDiscount();
         this.iva = purchase.getIva();
         this.totalAmount = purchase.getTotalAmount();
+        this.purchaseType = purchase.getPurchaseType();
+        this.proformaNumber = purchase.getProformaNumber();
+        this.proformaDate = purchase.getProformaDate();
+        this.proformaContact = purchase.getProformaContact();
+        this.proformaValidity = purchase.getProformaValidity();
         
         this.details = purchase.getPurchaseDetails().stream()
                 .map(PurchaseDetailReportDTO::new)

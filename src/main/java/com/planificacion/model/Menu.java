@@ -11,6 +11,10 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import javax.persistence.OneToMany;
+
 @Entity
 @Table(name = "menu")
 public class Menu {
@@ -23,7 +27,10 @@ public class Menu {
 	private String url;
 	@Column(name = "icono", length = 50)
 	private String icono;
-
+	@JsonManagedReference
+	@OneToMany(mappedBy = "parentMenu", fetch = FetchType.LAZY)
+    private List<Submenu> submenus;
+  
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "menu_rol", joinColumns = @JoinColumn(name = "id_menu", referencedColumnName = "idMenu"), inverseJoinColumns = @JoinColumn(name = "id_rol", referencedColumnName = "idRol"))
 	private List<Rol> roles;
@@ -44,14 +51,6 @@ public class Menu {
 		this.nombre = nombre;
 	}
 
-	public String getUrl() {
-		return url;
-	}
-
-	public void setUrl(String url) {
-		this.url = url;
-	}
-
 	public String getIcono() {
 		return icono;
 	}
@@ -66,6 +65,22 @@ public class Menu {
 
 	public void setRoles(List<Rol> roles) {
 		this.roles = roles;
+	}
+
+	public List<Submenu> getSubmenus() {
+		return submenus;
+	}
+
+	public void setSubmenus(List<Submenu> submenus) {
+		this.submenus = submenus;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 }

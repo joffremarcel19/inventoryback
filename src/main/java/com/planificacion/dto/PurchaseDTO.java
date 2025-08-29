@@ -29,6 +29,15 @@ public class PurchaseDTO {
     private Double iva;
     private String authorizationCode;
     
+    // ✅ Nuevo campo: Tipo de compra como String
+    private String purchaseType;
+    private LocalDate proformaDate;
+    private String proformaContact;
+    private Integer proformaValidity;
+
+    // ✅ Nuevo campo: Número de proforma
+    private String proformaNumber;
+    
     private ResponsibleUserDTO responsibleUser; // DTO para el usuario responsable
     private UnidadAdministrativaDTO unidadAdministrativaCompra;
     private List<PurchaseDetailSimpleDTO> details; // DTO simplificado para los detalles
@@ -51,6 +60,11 @@ public class PurchaseDTO {
         this.discount = purchase.getDiscount();
         this.iva = purchase.getIva();
         this.authorizationCode = purchase.getAuthorizationCode();
+        this.purchaseType = purchase.getPurchaseType();
+        this.proformaNumber = purchase.getProformaNumber();
+        this.proformaDate = purchase.getProformaDate();
+        this.proformaContact = purchase.getProformaContact();
+        this.proformaValidity = purchase.getProformaValidity();
      // --- MAPEANDO LOS NUEVOS CAMPOS ---
         if (purchase.getSupplier() != null) {
             this.supplier = new SupplierDTO(purchase.getSupplier());
@@ -81,7 +95,23 @@ public class PurchaseDTO {
         }
     }
 
-    public Integer getId() {
+    public String getPurchaseType() {
+		return purchaseType;
+	}
+
+	public void setPurchaseType(String purchaseType) {
+		this.purchaseType = purchaseType;
+	}
+
+	public String getProformaNumber() {
+		return proformaNumber;
+	}
+
+	public void setProformaNumber(String proformaNumber) {
+		this.proformaNumber = proformaNumber;
+	}
+
+	public Integer getId() {
         return id;
     }
 
@@ -203,8 +233,6 @@ public class PurchaseDTO {
         this.unidadAdministrativaCompra = unidadAdministrativaCompra;
     }
 
-
-
 	public Double getSubtotalIva() {
 		return subtotalIva;
 	}
@@ -268,6 +296,31 @@ public class PurchaseDTO {
 	public void setSubtotal(Double subtotal) {
 		this.subtotal = subtotal;
 	}
+
+	public LocalDate getProformaDate() {
+		return proformaDate;
+	}
+
+	public void setProformaDate(LocalDate proformaDate) {
+		this.proformaDate = proformaDate;
+	}
+
+	public String getProformaContact() {
+		return proformaContact;
+	}
+
+	public void setProformaContact(String proformaContact) {
+		this.proformaContact = proformaContact;
+	}
+
+	public Integer getProformaValidity() {
+		return proformaValidity;
+	}
+
+	public void setProformaValidity(Integer proformaValidity) {
+		this.proformaValidity = proformaValidity;
+	}
+	
     
 
 }

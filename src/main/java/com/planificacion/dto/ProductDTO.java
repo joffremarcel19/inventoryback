@@ -17,6 +17,8 @@ public class ProductDTO {
     private Boolean irbp;
     private Boolean ice;
     private String partNumber;
+    private String idOlympo;
+    private Integer performance;
 
     public ProductDTO(Product product) {
         this.id = product.getId();
@@ -29,5 +31,7 @@ public class ProductDTO {
         this.irbp = product.getIrbp();
         this.ice = product.getIce();
         this.partNumber = product.getPartNumber();
+        this.idOlympo = product.getIdOlympo();
+        this.performance = product.getPerformance();
     }
 }

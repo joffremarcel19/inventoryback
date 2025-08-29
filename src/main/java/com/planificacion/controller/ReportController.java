@@ -1,8 +1,11 @@
 package com.planificacion.controller;
 
+import com.planificacion.dto.DeliveryReportDTO;
 import com.planificacion.dto.PurchaseReportDTO;
 import com.planificacion.exception.ModeloNotFoundException;
+import com.planificacion.model.Delivery;
 import com.planificacion.model.Purchase;
+import com.planificacion.service.IDeliveryService;
 import com.planificacion.service.IPdfService;
 import com.planificacion.service.IPurchaseService; // Asumiendo que ya tienes este servicio
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +29,9 @@ public class ReportController {
 
     @Autowired
     private IPdfService pdfService;
+    
+    @Autowired
+    private IDeliveryService deliveryService;
 
     @GetMapping("/purchase/{id}/pdf")
     public ResponseEntity<InputStreamResource> generatePurchaseReport(@PathVariable Integer id) throws Exception {
@@ -41,6 +47,26 @@ public class ReportController {
         
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Disposition", "inline; filename=purchase_report.pdf");
+        
+        return ResponseEntity
+                .ok()
+                .headers(headers)
+                .contentType(MediaType.APPLICATION_PDF)
+                .body(new InputStreamResource(bis));
+    }
+    
+    @GetMapping("/delivery/{id}/pdf")
+    public ResponseEntity<InputStreamResource> generateDeliveryReport(@PathVariable Integer id) throws Exception {
+        Delivery delivery = deliveryService.findById(id);
+        if (delivery == null) {
+            throw new ModeloNotFoundException("Delivery not found with ID: " + id);
+        }
+        
+        DeliveryReportDTO reportData = new DeliveryReportDTO(delivery);
+        ByteArrayInputStream bis = pdfService.generateDeliveryReport(reportData);
+        
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Disposition", "inline; filename=delivery_report.pdf");
         
         return ResponseEntity
                 .ok()

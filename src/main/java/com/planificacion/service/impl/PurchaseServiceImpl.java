@@ -103,6 +103,11 @@ public class PurchaseServiceImpl implements IPurchaseService {
         purchase.setDiscount(request.getDiscount());
         purchase.setIva(request.getIva());
         purchase.setAuthorizationCode(request.getAuthorizationCode());
+        purchase.setPurchaseType(request.getPurchaseType());
+        purchase.setProformaNumber(request.getProformaNumber());
+        purchase.setProformaDate(request.getProformaDate());
+        purchase.setProformaContact(request.getProformaContact());
+        purchase.setProformaValidity(request.getProformaValidity());
 
         // Mapeo de relaciones, buscando las entidades por ID
         Supplier supplier = supplierRepo.findById(request.getSupplierId())
@@ -199,6 +204,11 @@ public class PurchaseServiceImpl implements IPurchaseService {
         existingPurchase.setIrbp(request.getIrbp());
         existingPurchase.setIce(request.getIce());
         existingPurchase.setAuthorizationCode(request.getAuthorizationCode());
+        existingPurchase.setPurchaseType(request.getPurchaseType());
+        existingPurchase.setProformaNumber(request.getProformaNumber());
+        existingPurchase.setProformaDate(request.getProformaDate());
+        existingPurchase.setProformaContact(request.getProformaContact());
+        existingPurchase.setProformaValidity(request.getProformaValidity());
 
         // Actualizar relaciones (solo si el ID en el DTO es diferente o no nulo)
         if (request.getSupplierId() != null && (existingPurchase.getSupplier() == null || !existingPurchase.getSupplier().getId().equals(request.getSupplierId()))) {

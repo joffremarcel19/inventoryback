@@ -89,6 +89,22 @@ public class Purchase {
     @Column(name = "status", nullable = false, length = 50) // estado (ej. "PENDING", "COMPLETED", "CANCELLED")
     private String status;
     
+    @Column(name = "purchase_type", nullable = true)
+    private String purchaseType;
+
+    // ✅ Nuevo campo: Número de Proforma (no obligatorio)
+    @Column(name = "proforma_number", nullable = true)
+    private String proformaNumber;
+    
+    @Column(name = "proforma_date", nullable = true)
+    private LocalDate proformaDate;
+
+    @Column(name = "proforma_contact", nullable = true)
+    private String proformaContact;
+
+    @Column(name = "proforma_validity", nullable = true)
+    private Integer proformaValidity;
+    
     @JsonIgnore
     @OneToMany(mappedBy = "purchase", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PurchaseDetail> purchaseDetails;
