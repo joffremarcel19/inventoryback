@@ -16,19 +16,17 @@ public class ParameterDetail {
     private Integer id;
 
     @Column(name = "name", nullable = false, length = 100)
-    private String name; // Ej: "Traspaso", "Prestamo", "Activo", "Desarrollo", "Compra"
+    private String name; 
     
     @Column(name = "value", nullable = false, length = 100)
     private String value; 
 
     @Column(name = "status", nullable = false, length = 20)
-    private String status; // Ej: "act", "inact"
-
-    @ManyToOne // Relación Muchos a Uno: Muchos ParameterDetails pertenecen a un Parameter
+    private String status; 
+    @ManyToOne 
     @JsonBackReference
     @JoinColumn(name = "parameter_id", nullable = false, foreignKey = @ForeignKey(name = "FK_parameter_detail_parameter"))
-    private Parameter parameter; // El Parameter al que pertenece este detalle
-
+    private Parameter parameter; 
     public ParameterDetail() {
     }
 

@@ -23,8 +23,7 @@ public class InventoryUnit {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;  // El campo id de la unidad de inventario
-    // Campos únicos para equipos
+    private int id;
     @Column(name = "serial", unique = true)
     private String serial;
 
@@ -37,19 +36,14 @@ public class InventoryUnit {
 
     @Column(name = "stock")
     private int stock;
-    // ✅ Nuevos campos para stock mínimo y máximo
     @Column(name = "min_stock")
     private Integer minStock;
 
     @Column(name = "max_stock")
     private Integer maxStock;
-    
-    // ✅ Nuevo campo: El custodio del inventario (no es obligatorio)
     @ManyToOne
     @JoinColumn(name = "custodian_id", nullable = true, foreignKey = @ForeignKey(name = "FK_inventory_unit_custodian"))
     private Persona custodian;
-
-    // ✅ Nuevo campo: El estado del inventario (no es obligatorio)
     @Column(name = "status", nullable = true)
     private String status;
     

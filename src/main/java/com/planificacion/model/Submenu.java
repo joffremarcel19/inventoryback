@@ -29,7 +29,6 @@ public class Submenu {
     @Column(name = "icono", length = 50)
     private String icon;
 
-    // Relationship to the parent menu
     @JsonBackReference 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_menu_padre", referencedColumnName = "idMenu")

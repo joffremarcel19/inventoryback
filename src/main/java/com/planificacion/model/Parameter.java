@@ -17,15 +17,11 @@ public class Parameter {
     private Integer id;
 
     @Column(name = "code", nullable = false, unique = true, length = 50)
-    private String code; // Ej: "DELIVERY_TYPE", "HELPDESK_STATUS"
+    private String code; 
 
     @Column(name = "name", nullable = false, unique = true, length = 100)
-    private String name; // Ej: "Delivery Type", "Helpdesk Status"
+    private String name; 
 
-    // Relación OneToMany: Un Parameter tiene muchos ParameterDetails
-    // cascade = CascadeType.ALL significa que operaciones como persist o remove en Parameter
-    // se propagarán a sus ParameterDetails.
-    // orphanRemoval = true significa que si un ParameterDetail se desvincula de un Parameter, se elimina.
     @JsonBackReference
     @OneToMany(mappedBy = "parameter", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ParameterDetail> details;

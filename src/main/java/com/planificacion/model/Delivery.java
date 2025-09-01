@@ -17,12 +17,11 @@ public class Delivery {
 
     @ManyToOne
     @JoinColumn(name = "person_id", nullable = false, foreignKey = @ForeignKey(name = "FK_delivery_persona"))
-    private Persona person; // Relación con la persona que recibe
+    private Persona person; 
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false, foreignKey = @ForeignKey(name = "FK_delivery_usuario"))
-    private Usuario user; // Relación con el usuario que realiza la entrega
- // En tu Delivery.java
+    private Usuario user; 
     @ManyToOne
     @JoinColumn(name = "delivery_type_detail_id", nullable = false, foreignKey = @ForeignKey(name = "FK_delivery_parameter_detail"))
     private ParameterDetail deliveryTypeDetail;
@@ -31,10 +30,8 @@ public class Delivery {
     private LocalDateTime deliveryDate;
 
     @Column(name = "description", columnDefinition = "TEXT")
-    private String description; // Descripción de la entrega
-    
-
-    // Relación OneToMany con DeliveryDetail
+    private String description; 
+ 
     @OneToMany(mappedBy = "delivery", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DeliveryDetail> deliveryDetails;
     

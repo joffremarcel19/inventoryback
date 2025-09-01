@@ -30,18 +30,18 @@ public class Purchase {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "purchase_order") // Orden de Compra
+    @Column(name = "purchase_order") 
     private String purchaseOrder;
     
     @Column(name = "purchase_date", nullable = false)
     private LocalDate purchaseDate;
 
-    @Column(name = "entry_date") // Fecha de Ingreso
+    @Column(name = "entry_date") 
     private LocalDateTime entryDate;
 
     @Column(name = "invoice_number", nullable = false, unique = true)
     private String invoiceNumber;
-    @Column(name = "authorization_code", nullable = false, unique = true)
+    @Column(name = "authorization_code", nullable = true)
     private String authorizationCode;
 
     @Column(name = "total_amount", nullable = false, precision = 10, scale = 2)
@@ -64,12 +64,11 @@ public class Purchase {
 
     @Column(name = "iva", precision = 10, scale = 2)
     private Double iva;
- // Relación con ParameterDetail para el método de pago (metodo_pago)
     @ManyToOne
     @JoinColumn(name = "payment_method_id", nullable = false, foreignKey = @ForeignKey(name = "FK_purchase_payment_method"))
-    private ParameterDetail paymentMethod; // metodo_pago
+    private ParameterDetail paymentMethod; 
 
-    @Column(name = "observation", length = 500) // observación, puede ser nula
+    @Column(name = "observation", length = 500) 
     private String observation;
 
     @ManyToOne
@@ -78,7 +77,7 @@ public class Purchase {
 
     @ManyToOne
     @JoinColumn(name = "responsible_user_id", nullable = false, foreignKey = @ForeignKey(name = "FK_purchase_responsible_user"))
-    private Usuario responsibleUser; // responsable (id_usuario)
+    private Usuario responsibleUser; 
     @ManyToOne
     @JoinColumn(name = "id_unidad_adm", nullable = false, foreignKey = @ForeignKey(name = "FK_purchase_unidad_administrativa"))
     private UnidadAdministrativa unidadAdministrativaCompra;
@@ -86,13 +85,12 @@ public class Purchase {
     @JoinColumn(name = "administrator_id", referencedColumnName = "idPersona", nullable = false, foreignKey = @ForeignKey(name = "FK_purchase_administrator_persona"))
     private Persona administrator;
 
-    @Column(name = "status", nullable = false, length = 50) // estado (ej. "PENDING", "COMPLETED", "CANCELLED")
+    @Column(name = "status", nullable = false, length = 50) 
     private String status;
     
     @Column(name = "purchase_type", nullable = true)
     private String purchaseType;
 
-    // ✅ Nuevo campo: Número de Proforma (no obligatorio)
     @Column(name = "proforma_number", nullable = true)
     private String proformaNumber;
     

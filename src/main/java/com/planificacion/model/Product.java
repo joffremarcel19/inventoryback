@@ -36,7 +36,6 @@ public class Product {
     @Column(name = "type", nullable = true)
     private String type;
 
-    // ✅ Campo único para el número de parte de suministros
     @Column(name = "part_number", nullable = true, unique = true)
     private String partNumber;
     
@@ -47,7 +46,6 @@ public class Product {
     @Column(name = "ice", nullable = false)
     private Boolean ice;
     
- // Nuevo campo para el rendimiento (numérico y no obligatorio)
     @Column(name = "performance", nullable = true)
     private Integer performance; 
 
